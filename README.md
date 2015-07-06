@@ -5,6 +5,8 @@ I will upload the scripts soon, I just realized that I have a strong dependency 
 
 For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM, and I am working in data from DAKOTA-SU2 as well.  I hope to come out with a single format for doing the data analytics independently of the tools used.
 
+The tools are bassed in Python 2.7, javascript, html5, pyqt5,and d3.js.
+
 Last update Jul6-2015.
 
 jg
