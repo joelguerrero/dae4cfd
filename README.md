@@ -1,14 +1,30 @@
 # dae4cfd
-Python tools for data analytics.
+Python and javascript tools for data analytics.
 
-I will upload the scripts soon, I just realized that I have a strong dependency with the tutorials and cases.  So I need to clean up things a little bit and create basic tutorials.
 
-For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and I am working in data from DAKOTA-SU2 as well.  I hope to come out with a single format for doing the data analytics independently of the tools used.
+
+We are having problems with the python scripts related to a strong dependency with the datasets, tutorials and cases.  So we need to clean up things a little bit and create basic tutorials.
+
+At the moment we are also working in implementing all the python scripts in javascript so you can run it from any device.
+
+For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and we are working in data from DAKOTA-SU2 as well.  We hope to come out with a single format for doing the data analytics independently of the tools used.
 
 The tools are bassed in Python 2.7, javascript, html5, pyqt5, and d3.js.
 
-Last update Jul6-2015.
+Last update Aug1-2015.
 
 jg
+
+
+
+Tools that are already working but we are testing before releasing:
+  Interactive scatter plot amd scatter plot matrix
+  Pareto inspector
+  Parallel coordinates plot
+  Correlation plot matrix
+  Linear regression plots
+  Hexbin plot
+  Histograms
+  Spider plot
 
 
