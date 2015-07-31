@@ -9,14 +9,6 @@ At the moment we are also working in implementing all the python scripts in java
 
 For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and we are working in data from DAKOTA-SU2 as well.  We hope to come out with a single format for doing the data analytics independently of the tools used.
 
-The tools are bassed in Python 2.7, javascript, html5, pyqt5, and d3.js.
-
-Last update Aug1-2015.
-
-jg
-
-
-
 Tools that are already working but we are testing before releasing:
   Interactive scatter plot amd scatter plot matrix
   Pareto inspector
@@ -26,5 +18,14 @@ Tools that are already working but we are testing before releasing:
   Hexbin plot
   Histograms
   Spider plot
+
+
+
+
+The tools are bassed in Python 2.7, javascript, html5, pyqt5, and d3.js.
+
+Last update Aug1-2015.
+
+jg
 
 
