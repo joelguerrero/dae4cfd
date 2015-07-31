@@ -5,7 +5,7 @@ Python and javascript tools for data analytics.
 
 We are having problems with the python scripts related to a strong dependency with the datasets, tutorials and cases.  So we need to clean up things a little bit and create basic tutorials.
 
-At the moment we are also working in implementing all the python scripts in javascript so you can run it from any device.
+At the moment we are also working in implementing all the python scripts in javascript, so you can use any device.
 
 For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and we are working in data from DAKOTA-SU2 as well.  We hope to come out with a single format for doing the data analytics independently of the tools used.
 
