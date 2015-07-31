@@ -11,7 +11,7 @@ For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM 
 
 Tools that are already working (but we are testing them before the initial release):
 
-  Interactive scatter plot and scatter plot matrix
+  *Interactive scatter plot and scatter plot matrix
   
   *Pareto inspector
   
