@@ -9,15 +9,15 @@ At the moment we are also working in implementing all the python scripts in java
 
 For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and we are working in data from DAKOTA-SU2 as well.  We hope to come out with a single format for doing the data analytics independently of the tools used.
 
-Tools that are already working but we are testing before releasing:
-  Interactive scatter plot amd scatter plot matrix
-  Pareto inspector
-  Parallel coordinates plot
-  Correlation plot matrix
-  Linear regression plots
-  Hexbin plot
-  Histograms
-  Spider plot
+Tools that are already working (but we are testing them before the initial release):
+  *Interactive scatter plot amd scatter plot matrix
+  *Pareto inspector
+  *Parallel coordinates plot
+  *Correlation plot matrix
+  *Linear regression plots
+  *Hexbin plot
+  *Histograms
+  *Spider plot
 
 
 
