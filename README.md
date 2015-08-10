@@ -25,11 +25,27 @@
   	* Parallel coordinates plot
   	* Correlation plot matrix
    	* Linear regression plots
+   	* Box plots - Violin plots
+   	* Line plots
   	* Hexbin plot
   	* Histograms
   	* Spider plots - Radar plots
+  	* K-means clustering
 
 
+&nbsp;
+&nbsp;
+
+
+-
+
+The tools are bassed in Python 2.7, javascript, d3.js, html5, pyqt5, and d3.js.
+
+joegi
+
+**Last update: AUG10-2015.**
+
+-
 &nbsp;
 &nbsp;
 
@@ -53,13 +69,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 -
 
-&nbsp;
-&nbsp;
 
-The tools are bassed in Python 2.7, javascript, html5, pyqt5, and d3.js.
-
-Last update AUG9-2015.
-
-joegi
 
 
