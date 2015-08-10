@@ -1,0 +1,47 @@
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+circle {
+  -webkit-transition: fill-opacity 250ms linear;
+}
+
+.chart circle { /*All circles which are descendents of an element with class 'selecting'*/
+  fill-opacity: .2;
+}
+
+.chart circle.selected {/*All circles with class 'selected' which are descendants of elements with class 'selecting'*/
+  stroke: #f00;
+}
+
+.resize path {
+  fill: #666; fill-opacity: .8; stroke: #000; stroke-width: 1.5px;
+}
+
+.axis path, .axis line {
+  fill: none; stroke: #000; shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  fill-opacity: .125; shape-rendering: crispEdges;
+}

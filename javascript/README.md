@@ -1,0 +1,29 @@
+<!--# DAE4CFD-->
+
+![](../daelogo.png)
+
+
+###What you will find here:
+
+* In the directory **sample_datasets** you will find a few datasets ready to use:
+
+	* **working/set1/**: data obtained from a CFD optimization study of a daggerboard.
+	* **working/set2/**: famous Iris flower data set.
+	* **working/set3/**: data obtained from a multidimensional CFD study of different NACA airfoils.
+	* **working/set4/**: data obtained from a multiobjective optimization study of a cone.  Minimize lateral and bottom surface subject to a volume constraint.
+
+&nbsp;
+&nbsp;
+
+* In the directory **scatterplot** you will find the script for interactive scatter plot.  To use it go to the directory **scatterplot/html** and open the file scatterplot.html:
+	* Choose the type of separator (comma for csv files), and press browse to look for the file.  
+	* Select the variables you want to plot and press plot.  
+	* You can also select the dimension of the canvas. Set the desired dimensions in the boxes chart width and chart height.
+	*  When your plot is showing, select a region in the main chart to compute the basic statistics of that set. You can redimension and traslate the selection area. 
+	*  If you mouse over a point you will see to your left the information of that point.  
+	*  In the bottom of the main chart you have the navigator, use it to zoom in/out and translate the selection area.
+	*  The remove selected and export selected options are working but they are not enable in this preview.
+	*  This script should run in any device (PC, smartphone, tablet). 
+	*  If you use this scrpt and you break it, please let us know (joel.guerrero@unige.it).
+	*  Also, if you have suggestions, do not hesitate in contacting us.
+	

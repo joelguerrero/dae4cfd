@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <script src = "https://code.jquery.com/jquery-1.11.3.min.js" type = "text/javascript"></script>
+    <!--<script src="http://d3js.org/d3.v3.min.js"></script> -->
+    <script src="../js/d3-master/d3.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/util.js" type="text/javascript"></script>
+    <!--<script src='http://www.macwright.org/simple-statistics/simple_statistics.js' type="text/javascript"></script>-->
+    <link rel="stylesheet" href="../css/scatterplot.css" />
+</head>
+<body>
+        <div class="container">
+            <div class = "row">
+                <div class="col-md-1">
+                </div>
+                <div class = "col-md-10">
+                    <form class="form-inline" role="form">
+                        <div class="form-group dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                Separator
+                              <span class="caret"></span></button>
+                              <ul id="delim" class="dropdown-menu">
+                                <li><a href="#">Comma</a></li>
+                                <li><a href="#">Semicolon</a></li>
+                                <li><a href="#">Tab</a></li>
+                              </ul>
+                        </div>   
+                        <div class="form-group">
+                            <span class="btn btn-default btn-file">
+                                Browse <input id="filebrowsed" type="file" disabled>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                <input id="headerFlag" type="checkbox" />Has Header
+                            </label>
+                        </div>
+                        <div class="form-group dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                               xAxis 
+                              <span class="caret"></span></button>
+                              <ul id="xaxisName" class="dropdown-menu">
+                              </ul>
+                        </div>   
+                        <div class="form-group dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                               yAxis 
+                              <span class="caret"></span></button>
+                              <ul id="yaxisName" class="dropdown-menu">
+                              </ul>
+                        </div> 
+                        
+                        <div class="form-group dropdown">
+                            <input type="text" class="form-control" id="txtwidth" placeholder="Chart Width">
+                        </div> 
+                        <div class="form-group dropdown">
+                            <input type="text" class="form-control" id="txtheight" placeholder="Chart Height">
+                        </div> 
+                        <div class="form-group">        
+                            <button id="btnPlot" type="submit" class="btn btn-default" disabled>Plot</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <button id="toolbox" class="btn" type="button" style="opacity:0">Remove Selected</button>
+                </div>
+                <div class="col-md-2">
+                    <button id="toolbox1" class="btn" type="button" style="opacity:0">Export Selected</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="tooltip" style="opacity:0"> </div>
+                </div>
+                <div class="col-md-8">
+                    <div id='d3Chart'></div>
+                </div>
+                <div class="col-md-2">
+                    <div id="statDiv" class="col-md-12"> </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="tooltip" style="opacity:0"> </div>
+            </div>
+        </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(event){
+            var fileContent, rawdata = [], originalData = []; 
+            var fields, auxilaryFields, fieldCount, delim;
+            var xaxisName, yaxisName;
+            $("#delim li").on('click', function(event){
+                var selected = this.textContent;
+                if(selected === "Comma") delim = ',';
+                else if(selected === "Semicolon") delim = ';';
+                else delim = '\t';
+                $("#filebrowsed").prop('disabled', false);
+            });
+            
+            function readerHandler(e2){
+                fileContent = e2.target.result;
+                //rawdata = dictReader(fileContent, delim);
+                //var headerFlag = d3.select('#headerFlag').property("checked");
+                var headerFlag = true;
+                rawdata = csvDictReader(fileContent, delim, headerFlag);
+                originalData = rawdata.map(function(row){return clone(row);});
+                fields = Object.keys(rawdata[0]);
+                $("#xaxisName").empty();    //Clear the dropdown boxes before refilling
+                $("#yaxisName").empty();
+                $.each(fields, function(idx, fieldName){    //fill the drop down box
+                    $("#xaxisName").append('<li><a href="#">' + fieldName + '</a></li>');
+                    $("#yaxisName").append('<li><a href="#">' + fieldName + '</a></li>');
+                    $("#btnPlot").prop('disabled', false);
+                });
+
+                $("#xaxisName li").on('click', function(event){
+                    xaxisName = this.textContent;
+                });
+                $("#yaxisName li").on('click', function(event){
+                    yaxisName = this.textContent;
+                });
+            }
+           
+            function make_vLines(tickCount, xScale){ 
+                /*A function to generate vertical grid lines*/
+                return d3.svg.axis().scale(xScale).orient('bottom').ticks(tickCount);
+            }
+            
+            function make_hLines(tickCount, yScale){
+                /*A function to generate horizontal grid lines*/
+                return d3.svg.axis().scale(yScale).orient('left').ticks(tickCount);   
+            }
+
+            function readfile(e1){  //An event handler function to be called when the input control 'changes'
+                var fileobj = e1.target.files[0];
+                var fr = new FileReader();
+                fr.readAsText(fileobj);
+                fr.onload = readerHandler;  //onload implies, after reading is complete call 'readerHandler'
+            } 
+           
+            $('.btn-file :file').on('fileselect', function(event) {
+                readfile(event);
+            });
+           
+            $('.btn-file :file').on('change', function() {
+                var input = $(this);
+                input.trigger('fileselect');
+            }); 
+            
+            /*Chart dimension and coordinates*/
+            var margin = {top: 100, right: 50, bottom: 75, left: 50};
+            
+            var tickCount = 10;
+
+    $("#btnPlot").on('click', function(){
+            var txtwidth, txtheight;
+
+            var txtwidth = $("#txtwidth").val();
+            var txtheight = $("#txtheight").val();
+
+            console.log(txtwidth, txtheight); 
+            
+            txtwidth = parseFloat(txtwidth);
+            txtheight = parseFloat(txtheight);
+            
+            console.log(txtwidth, txtheight); 
+            
+            var canvasW = isNaN(txtwidth)? 750: txtwidth;
+            var canvasH = isNaN(txtheight)? 650: txtheight;
+            var chartW = canvasW - margin.left - margin.right;
+            var navW = chartW, navH = 100;
+
+            var chartH = canvasH - (margin.top + margin.bottom) - (navH + margin.bottom);
+            var chartStartPoints = [margin.left, margin.top];
+            var navStartPoints = [margin.left, margin.top + chartH + margin.bottom];
+
+                d3.select('#toolbox').style('opacity', 1);
+                d3.select('#toolbox1').style('opacity', 1);
+
+                auxilaryFields = [].concat(fields);
+                var i = auxilaryFields.indexOf(xaxisName);
+                if(i != -1){    //Remove the field name that 'xaxisName' contains
+                    auxilaryFields.splice(i, 1);
+                }
+                i = auxilaryFields.indexOf(yaxisName);
+                if(i != -1){    //Remove the field name that 'yaxisName' contains
+                    auxilaryFields.splice(i, 1);
+                }
+                
+                var xMinMax = d3.extent(rawdata, function(d, i){ return d[xaxisName];});
+                var yMinMax = d3.extent(rawdata, function(d, i){ return d[yaxisName];});
+                var xMin = xMinMax[0], xMax = xMinMax[1], yMin = yMinMax[0], yMax = yMinMax[1];
+                
+        /*################################## BEGIN MAIN CHART ####################################*/
+                
+                var div = d3.select('.tooltip');
+
+                /*Clear before redrawing*/ 
+                d3.select('#d3Chart').html(''); 
+                
+                var canvas = d3.select('#d3Chart').append('svg')
+                                .attr('width', canvasW).attr('height', canvasH).append('g');
+
+                var mainChart = canvas.append('g').attr('width', chartW).attr('height', chartH)
+                    .attr('transform', function(){
+                        return 'translate(' + chartStartPoints.join(',') + ')';
+                    });
+
+                /*Main chart x axis scale */
+                var xScale = d3.scale.linear().domain(xMinMax).range([0, chartW]);
+                var xAxis = d3.svg.axis().scale(xScale).orient('bottom').ticks(tickCount)
+                
+                /*Main chart y axis scale */
+                var yScale = d3.scale.linear().domain(yMinMax).range([chartH, 0]);
+                var yAxis = d3.svg.axis().scale(yScale).orient('left').ticks(tickCount)
+
+                /*Add xAxis*/
+                mainChart.append('g').attr('transform', 'translate(0, ' + chartH + ')')
+                    .attr('class', 'x axis').call(xAxis);
+
+                /*Add xAxis Label*/
+                mainChart.append('text').attr('x', chartW/2).attr('y', chartH + margin.bottom/2)
+                    .style('text-anchor', 'middle').text(xaxisName);
+
+                /*Add yAxis*/
+                mainChart.append('g').attr('class', 'y axis').call(yAxis);
+
+                /*Add yAxis Label*/
+                mainChart.append('text').attr('transform', 'rotate(-90)')
+                    .attr('x', 0 - chartH/2).attr('y', 0 - margin.left)
+                    .style('text-anchor', 'middle').attr('dy', '2em').text(yaxisName);
+
+                /*Add vertical grid lines*/
+                mainChart.append('g').attr('class', 'grid')
+                    .attr('transform', 'translate(0, ' + chartH + ')')
+                    .call(make_vLines(tickCount, xScale).tickSize(-chartH, 0, 0).tickFormat(''));
+
+                /*Add horizontal grid lines*/
+                mainChart.append('g').attr('class', 'grid')
+                    .call(make_hLines(tickCount, yScale).tickSize(-chartW, 0, 0).tickFormat(''));
+
+                var title = xaxisName + ' vs ' + yaxisName;
+                
+                /*Chart title*/
+                mainChart.append('text').attr('x', chartW/2).attr('y', 0 - margin.top / 2)
+                    .style('text-anchor', 'middle').style('text-font', '16px').text(title);
+    
+                /*Create a brush behaviour to be used on the main chart*/
+                var chartBrush = d3.svg.brush().x(xScale).y(yScale).on('brushstart', chartBrushStart)
+                    .on("brush", chartBrushMov).on("brushend", chartBrushEnd);
+                
+                /*Attach a brush behaviour on the main chart */
+                var chartBrushHandle = mainChart.append("g").attr("class", "brush").call(chartBrush);
+
+                /*Select all the data points and join the data*/
+                var chartPoints = mainChart.selectAll('circle').data(rawdata).enter().append('circle')
+                    .attr("transform", function(d, i){ 
+                        return "translate (" + xScale(d[xaxisName]) + ", " + yScale(d[yaxisName]) + ")"
+                    }).attr('r', 4)
+                    .on('click', function(d, i){onSelected(d3.select(this), d, i);})
+                    .on('mouseover', function(d, i){drawToolTip(d);})
+                    .on('mouseout', function(d, i){emptyToolTip();});
+
+                
+                /*Attach a class attribute to the main chart */
+                mainChart.classed('chart', true);
+                
+        /*################################## END MAIN CHART ####################################*/
+        
+        /*################################## BEGIN NAVIGATOR CHART ####################################*/
+                
+                /*navigator xAxis scale*/
+                var navXScale = d3.scale.linear().domain([xMin, xMax]).range([0, navW]);
+
+                /*navigator yAxis scale*/
+                var navYScale = d3.scale.linear().domain([yMin, yMax]).range([navH,  0]);
+                
+                /*Chart for the navigator*/
+                var navChart = canvas.append("g").attr("width", navW) .attr("height", navH) 
+                                     .attr("transform", function(){
+                                            return "translate(" + navStartPoints.join(',') + ")";
+                                    });
+                var navPoints = navChart.selectAll("circle")
+                    .data(rawdata).enter().append("circle")
+                    .attr("transform", function(d, i){ 
+                                    return "translate(" + navXScale(d[xaxisName]) + "," 
+                                            + navYScale(d[yaxisName]) + ")"; 
+                    }).attr("r", 2);
+
+                var navBrush = d3.svg.brush().x(navXScale).y(navYScale).extent([[xMin, yMin], [xMax, yMax]])
+                    .on("brushstart", navBrushStart).on("brush", navBrushMove).on("brushend", navBrushEnd);
+
+                var navBrushHandle = navChart.append("g").attr("class", "brush").call(navBrush);
+
+        /*################################## END NAVIGATOR CHART ####################################*/
+                
+                chartBrushStart(); 
+                navBrushStart();
+                navBrushMove();
+
+                function onSelected(circle, d, i){
+                    var navpoint; 
+                    navPoints[0].forEach(function(point, i){
+                        if(point.__data__ === d){
+                            navpoint = d3.select(point);
+                        }
+                    });
+
+                    var selected = circle.classed('delete');
+                    circle.classed('delete', !selected);
+                    navpoint.classed('delete', !selected);
+                }
+                
+                d3.select('#toolbox').on('click', function(){
+                    var mainCircles =  mainChart.selectAll('.delete')
+                    var navCircles = navChart.selectAll('.delete')
+                   
+                    mainCircles.remove();
+                    navCircles.remove();
+                    
+                    /*After removing the selected points, reset the references to them */    
+                    navPoints = navChart.selectAll('circle');
+                    chartPoints = mainChart.selectAll('circle');
+                });
+                
+                function inRange(x, arg1, arg2){ 
+                    var min, max;
+                    if(arg1 < arg2){
+                        min = arg1;
+                        max = arg2;
+                    }else{
+                        min = arg2;
+                        max = arg1;
+                    }
+                    return min <= x && x <= max
+                }
+
+                function navBrushStart() {
+                    navChart.classed("chart", true);
+                    $("#statDiv").empty();  //Clear the table before redraw
+                    chartPoints.classed("selected", false);
+                    chartBrushHandle.classed('brushEnd', true);
+                    chartBrushHandle.classed('brush', false);
+                }
+
+                function navBrushMove() {
+                    var s = navBrush.extent();
+                    navPoints.classed("selected", function(d) { 
+                    var x0 = s[0][0], y0 = s[0][1],
+                        x1 = s[1][0], y1 = s[1][1];
+                    
+                        var x = inRange(d[xaxisName], x0, x1); 
+                        var y = inRange(d[yaxisName], y0, y1); 
+                        return x && y;
+                    });
+                }
+
+                function navBrushEnd() {
+                    navChart.classed("chart", !d3.event.target.empty());
+                    var navSelectedData = [];
+                    if(navBrush.empty()){
+                        navChart.classed("chart", true);
+                        navPoints.classed("selected", true);
+                        navBrush.extent([xMin, xMax]);
+                    }
+
+                    var s = navBrush.extent();
+                    
+                    var x0 = s[0][0], y0 = s[0][1],
+                        x1 = s[1][0], y1 = s[1][1];
+                    
+                    navPoints.each(function(d,i){ 
+                        if(inRange(d[xaxisName], x0, x1) && inRange(d[yaxisName], y0, y1)){ 
+                            navSelectedData.push(rawdata[i]);
+                        }
+                    });
+                    
+                    /*Resize the main chart's x axis*/
+                    xScale.domain(d3.extent(navSelectedData, function(d){return d[xaxisName];}));
+                    mainChart.selectAll('.x.axis').call(xAxis);
+
+                    /*Resize the main chart's y axis*/
+                    yScale.domain(d3.extent(navSelectedData, function(d){return d[yaxisName];}));
+                    mainChart.selectAll('.y.axis').call(yAxis);
+                    
+                    mainChart.selectAll('circle').remove();
+                    chartPoints = mainChart.selectAll("circle").data(navSelectedData).enter().append("circle")
+                        .attr("transform", function(d, i){ 
+                                return "translate(" + xScale(d[xaxisName]) + "," + yScale(d[yaxisName]) + ")"; 
+                    }).attr("r", 4)
+                    .on('click', function(d, i){onSelected(d3.select(this), d, i)})
+                    .on('mouseover', function(d, i){drawToolTip(d);})
+                    .on('mouseout', function(d, i){emptyToolTip();});
+                }
+                var chartSelectedData = [];
+                function chartBrushStart(){
+                    mainChart.classed("chart", true);
+                    chartSelectedData = [];
+                    chartBrushHandle.classed('brush', true);
+                }
+                function chartBrushMov(){
+                    var extent = chartBrush.extent();
+                    var x0 = extent[0][0], y0 = extent[0][1],
+                        x1 = extent[1][0], y1 = extent[1][1];
+                    chartPoints.classed("selected", function(d) { 
+                        var x = inRange(d[xaxisName], x0, x1); 
+                        var y = inRange(d[yaxisName], y0, y1); 
+                        var isSelected  = x && y;
+                    
+                        return isSelected;
+                    });
+                    
+                }
+                
+                function chartBrushEnd(){
+                        var partialData = {};
+                        
+                        partialData[xaxisName] = [];
+                        partialData[yaxisName] = [];
+                        d3.select("#statDiv").html(''); 
+                        
+                        var extent = chartBrush.extent();
+                        var x0 = extent[0][0], y0 = extent[0][1],
+                            x1 = extent[1][0], y1 = extent[1][1];
+                        chartPoints.classed("selected", function(d, i){
+                                var xd = d[xaxisName], yd = d[yaxisName];
+                                var is_brushed = inRange (xd, x0, x1) && inRange(yd, y0, y1);
+                                if(is_brushed)
+                                    chartSelectedData.push(d);
+                                return is_brushed;
+                        });
+                        
+                        chartSelectedData.forEach(function(row, index){
+                            partialData[xaxisName].push(row[xaxisName]);
+                            partialData[yaxisName].push(row[yaxisName]);
+                        });
+                        var count = partialData[xaxisName].length;
+                        if(count !== 0){ 
+                            var html = '<table>' 
+                                + '<thead>' 
+                                + '<tr><th></th>'
+                                + '<th>' + xaxisName + '</th><th>' + yaxisName + '</th>'
+                                + '</thead>'  
+                                + '<tfoot><tr>'
+                                + '<th colspan="0">Selection Size: ' + count + ' out of ' + rawdata.length + '</th></tr>'
+                                + '</tfoot>' 
+                                + '<tbody></tbody>';
+                            
+                            $("#statDiv").empty();  //Clear the table before redraw
+                            $("#statDiv").append(html);
+                            $.each(getStat, function(name, f){
+                                var html = '<tr><th align="right">' + name + ' </th>' 
+                                $.each(partialData, function(key, value){
+                                    html += '<td>' + f(value).toFixed(3) + '</td>';
+                                });
+                                html += '</tr>'
+                                lastRow = $("#statDiv table tbody").append(html);
+                            });
+                        }
+                }
+
+                var stats = ['min', 'mean'];
+                var getStat = {
+                    "Minimum":min,  "Maximum": max, "Mean": mean,
+                    "Variance":variance, "Std. dev.": standardDeviation
+                };
+                function emptyToolTip(){
+                        div.transition()
+                            .duration(100)
+                            .style('opacity', 0);
+                }
+                
+                function drawToolTip(d){
+                    /*Fields listed row-wise*/
+                        html = '<table><tbody>';
+                        fields.forEach(function(field, idx){
+                            var v = d[field];
+                            html += '<tr><th>' + field + '</th><td>' + trim(v, 3) +'</td></tr>';
+                        });
+                        html += '</tbody></table>'; 
+                        div.transition().duration(100).style('opacity', 0.8);
+                        div.html(html);
+                }
+                /*function drawToolTip(d){
+                    //Fields listed column-wise
+                        html = '<table><tbody><tr>';
+                        $.each(fields, function(idx, value){    //Fill header
+                            html += '<th>' + value + '</th>';
+                        });
+                        html += "</tr><tr>";
+                        fields.forEach(function(field, idx){
+                            var v = d[field];
+                            html += '<td>' + trim(v, 3) +'</td>';
+                        });
+                        html += '</tr></tbody></table>'; 
+                        div.transition().duration(100).style('opacity', 0.8);
+                        div.html(html);
+                }*/
+                
+            });
+        });
+    </script>
+</body>
+</html>
