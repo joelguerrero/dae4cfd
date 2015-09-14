@@ -8,8 +8,8 @@ function copyValue(value){
     /*Return a copy of 'value'
         'value' be different types supported
     */
-    var primitive = ['string', 'number', 'undefined', 'boolean', 'function'];
-    if(primitive.indexOf(typeof value) != -1){
+    var primitives = ['string', 'number', 'undefined', 'boolean', 'function'];
+    if(primitives.indexOf(typeof value) != -1){
         return value;
     }
     if(Array.isArray(value))
@@ -77,11 +77,30 @@ function csvDictReader(fileContent, delim, header){
 
             currentValues = line.trim().split(delim);
             currentValues = [idx].concat(currentValues);
-
-            if(currentValues.length === fields.length)
+            if(currentValues.length === fields.length){
                 result.push(new dict(fields, currentValues));
+            }
         });
         return result;  //An array of objects
+}
+function csvDictWriter(dictArray, delim){
+    /*Takes an array of objects and returns a string where the 
+     * each object's values are concatenated by 'delim' which in turn 
+     * are concatenated by the newline character '\n'
+     * */
+    var row, rows;
+    var fields = Object.keys(dictArray[0]);
+    rows = fields.join(delim) + '\n'; 
+    dictArray.forEach(function(obj, i){
+        row = [];
+        fields.forEach(function(field){
+            row.push(obj[field]);
+        });
+
+        rows += row.join(delim) + '\n';
+    });
+
+    return rows;
 }
 
 function max(x) {

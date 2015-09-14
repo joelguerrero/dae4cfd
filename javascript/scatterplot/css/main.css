@@ -1,47 +1,30 @@
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
+svg { font: 10px sans-serif; }
+circle { -webkit-transition: fill-opacity 250ms linear; }
+
+.axis{ fill: none; stroke: black; stroke-width: 1; shape-rendering: crispEdges; }
+.axis path, .axis line { fill: none; stroke: #000; shape-rendering: crispEdges; }
+.grid path{ stroke-width:0; }
+.grid .tick { stroke: lightgrey; stroke-opacity: 0.7; shape-rendering: crispEdges; }
+table { border-collapse: separate; border-spacing: 15px; padding:0}
+.chart .overlay { stroke-width: 0px; fill-opacity: 0; }
+.btn-file { position: relative; overflow: hidden; }
 .btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+    position: absolute; top: 0; right: 0; min-width: 100%; min-height: 100%;
+    font-size: 100px; text-align: right; filter: alpha(opacity=0); opacity: 0;
+    outline: none; background: white; cursor: inherit; display: block;
 }
-
-svg {
-  font: 10px sans-serif;
-}
-
-circle {
-  -webkit-transition: fill-opacity 250ms linear;
-}
-
-.chart circle { /*All circles which are descendents of an element with class 'selecting'*/
+.chart circle { /*All circles which are descendents of an element with class 'chart'*/
   fill-opacity: .2;
 }
-
-.chart circle.selected {/*All circles with class 'selected' which are descendants of elements with class 'selecting'*/
+.chart circle.delete{ fill-opacity: 1; }
+.chart circle.selected {/*All circles with class 'selected' which are descendants of elements with class 'chart'*/
   stroke: #f00;
 }
-
-.resize path {
-  fill: #666; fill-opacity: .8; stroke: #000; stroke-width: 1.5px;
-}
-
-.axis path, .axis line {
-  fill: none; stroke: #000; shape-rendering: crispEdges;
-}
-
-.brush .extent {
-  fill-opacity: .125; shape-rendering: crispEdges;
+.chart circle.hidden{ fill-opacity: 0; stroke:#000; }
+.resize path { fill: #666; fill-opacity: .8; stroke: #000; stroke-width: 1.5px; }
+.brushEnd { fill-opacity: 0; }
+.brush .extent { stroke: #f0980c; stroke-width: 2px; fill-opacity: .125; shape-rendering: crispEdges; }
+div.tooltip{
+    position: absolute; text-align: center; padding:12px; font:12px sans-serif;
+    background: lightsteelblue; border:0px; border-radius:8px; pointer-events:none;
 }

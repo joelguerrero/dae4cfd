@@ -1,3 +1,72 @@
+fieldset {
+    border-radius: 25px;
+    border: 1px solid #8AC007;
+    padding: 10px;
+    /*float:left;*/
+    /*width: 300px;*/
+    /*height: 150px;    */
+}
+.fieldPile{
+    float:left;
+    margin: 10px;
+    /*width:350px;*/
+}
+.field{
+    border-radius:5px;
+    border: 1px solid #81C007;
+    text-align:center;
+    min-width:70px;
+    height:30px;
+    display:inline-block;
+    margin:10px;
+}
+
+.fieldPile div{
+    border-radius:5px;
+    border: 1px solid #81C007;
+    text-align:center;
+    min-width:80px;
+    display:inline-block;
+    height:30px;
+    margin:10px;
+}
+.axisPile{
+    display:inline-block;
+    /*margin: 0 0 10px 10px;*/
+}
+.axisPile > *{
+    margin:0 10px;
+}
+.axisSlot h1 h2 h3 h4 h5 h6{
+    margin:0px;
+}
+
+.axisSlot div{
+    display:inline-block;
+}
+.axisSlot div > *{
+    margin:0 10px;
+}
+.axisSlot h1 h2 h3 h4 h5 h6{
+    margin:0px;
+}
+input [type="text"]{
+    display: inline;
+    width: 100px;
+}
+/*.axisSlot div{
+    display:inline;
+}
+*/
+.ui-draggable-dragging {
+      -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+        -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+          box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+}
+.hovered{
+    background: #aaa;
+}
+
 div.tooltip{
     position: absolute;
     text-align: center;
@@ -77,6 +146,10 @@ div.tooltip{
         }
         .chart circle.selected {/*All circles with class 'selected' which are descendants of elements with class 'chart'*/
           stroke: #f00;
+        }
+        .chart circle.hidden{
+            fill-opacity: 0;
+            stroke:#000;
         }
         .toolbox {
             fill:blue;
