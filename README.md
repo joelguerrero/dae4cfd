@@ -12,26 +12,42 @@
 
 ##Latest news:
 
-* At the moment we are having problems with the python scripts.  The issue is related to a strong dependency with the datasets, tutorials and some additional libraries. We are working hard to clean up things a little bit and create basic tutorials.
+* At the moment we are having problems with the python scripts.  The issue is related to a strong dependency with the datasets, tutorials and some additional libraries (intelectual property). We are working hard to clean up things a little bit and creating basic tutorials in order to release all scripts.
 
 * We are also working in implementing all the python scripts in javascript, with exactly the same functions.  The advantage of using javascript is that you can run the scripts from any device using a web browser.
 
-* For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and we are working in data from DAKOTA-SU2 as well.  We hope to come out with a single format for doing the data analytics independently of the tools used.
+* For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and we are working in data from SU2 as well.  We hope to come out with a single format for doing the data analytics independently of the tools used.  So far we are working with CSV, TSV and JSON data files.
 
-* Tools that are already working (but we are testing them before the initial release):
 
-	* Interactive scatter plot and scatter plot matrix
+###Things that are already working in javascript and d3.js
+
+* Working but we are having a hard time improving it (aesthetics and advanced capabilities):
+
+	* Interactive scatter plot (**the kernel of the framework**)
+		
+* Plots that are already working but we need to integrate into the framework:
+
   	* Pareto inspector
   	* Parallel coordinates plot
+  	* Line plots
+  	* Area plots
+  	* Hexbin plot
+  	* Histograms
+  	
+* Plots that we are testing before releasing them:
+
+	* Scatter plot matrix
   	* Correlation plot matrix
    	* Linear regression plots
    	* Box plots - Violin plots
-   	* Line plots
-  	* Hexbin plot
-  	* Histograms
   	* Spider plots - Radar plots
+  	* Surface plots
   	* K-means clustering
 
+* Plots that we haven't implemented yet:
+
+	* Crossfilters for exploring large multivariate datasets 
+  	* Live streaming plots
 
 &nbsp;
 &nbsp;
@@ -39,11 +55,11 @@
 
 -
 
-The tools are bassed in Python 2.7, javascript, d3.js, html5, pyqt5, and d3.js.
+The tools are bassed in Python 2.7, javascript, html5, pyqt5, and d3.js.
 
 joegi
 
-**Last update: AUG10-2015.**
+**Last update: SEP14-2015.**
 
 -
 &nbsp;
