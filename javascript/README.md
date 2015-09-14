@@ -17,7 +17,7 @@
 
 * In the directory **scatterplot** you will find the script for interactive scatter plot.  To install it, copy the whole directory and put it wherever you want.  In order to use it you need to be conneted to internet.
 * To use the scatterplot script go to the directory **scatterplot/html** and open the file scatterplot.html:
-	* Choose the type of separator. Comma for csv files and tab for tables separated with spaces (tsv files).  In the sample datasets, files with the .csv extension are comma separated and files with the extension .txt and tab separated.
+	* Choose the type of separator. Comma for csv files and tab for tables separated with spaces (tsv files).  In the sample datasets, files with the .csv extension are comma separated and files with the extension .txt are tab separated.
 	* Press browse to look for the file.  For the moment the file must be in your computer.  
 	* Select the variables you want to plot and press plot.  
 	* You can also select the dimension of the canvas. Set the desired dimensions in the boxes chart width and chart height.
