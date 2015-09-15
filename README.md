@@ -49,6 +49,8 @@
 	* Crossfilters for exploring large multivariate datasets 
   	* Live streaming plots
   	* Geospatial data
+  	* Plot digitizer
+  	* Downsampling for big-data
 
 &nbsp;
 &nbsp;
