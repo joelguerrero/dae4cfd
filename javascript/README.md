@@ -15,14 +15,13 @@
 &nbsp;
 &nbsp;
 
-* In the directory **video** you will find a short video showing you how to use the tool.
+* In the directory **scatterplot** you will find the script for interactive scatter plot.  To install it, download the whole directory and put it wherever you want.  In order to use it you need to be conneted to internet.
 
-![](./video/daevideo1.gif)
+* In the directory **scatterplot/video** you will find a short video showing you how to use the tool.
 
-&nbsp;
-&nbsp;
+![](./scatterplot/video/daevideo1.gif)
 
-* In the directory **scatterplot** you will find the script for interactive scatter plot.  To install it, copy the whole directory and put it wherever you want.  In order to use it you need to be conneted to internet.
+
 * To use the scatterplot script go to the directory **scatterplot/html** and open the file scatterplot.html:
 	* Choose the type of separator. Comma for csv files and tab for tables separated with spaces (tsv files).  In the sample datasets, files with the .csv extension are comma separated and files with the extension .txt are tab separated.
 	* Press browse to look for the file.  For the moment the file must be in your computer.  
@@ -37,4 +36,12 @@
 	*  This script should run in any device (PC, smartphone, tablet). 
 	*  If you use this script and you break it, please let us know (joel.guerrero@unige.it).
 	*  Also, if you have suggestions, do not hesitate in contacting us.
+
+&nbsp;
+&nbsp;
 	
+* In the directory **parallel_coordinates** you will find the script for interactive parallel coordinates.  To install it, download the whole directory and put it wherever you want. 
+
+* In the directory **parallel_coordinates/video** you will find a short video showing you how to use the tool.
+
+![](./parallel_coordinates/video/dae_parallelcoordinates.gif)
