@@ -3,7 +3,7 @@
 ![](./daelogo.png)
 
 
-###DAE4CFD is a set of Python and js scripts especifically written to analyze and visualize the data obtained from multiphysics and CFD simulations.
+###DAE4CFD is a set of Python and js scripts specifically written to analyze and visualize the data obtained from multiphysics and CFD simulations.
 
 > **The goal of this project is to enhance people's ability to understand and communicate data through the design of new interactive systems for data visualization and analysis. The data to be used can be obtained from any discipline (social sciences, econometrics, marketing, health care, physics, etc.), but we will focus our attention on data obtained from engineering design exploration and design optimization studies. We aim at studying the perceptual, cognitive and social factors affecting data analysis in order to improve the efficiency at which expert analysts work, and to lower barriers for non-experts. The tools are implemented in Python, javascript and html5, and can be run from any device (PC, tablet, smart-phone).**
 
@@ -12,11 +12,15 @@
 
 ##Latest news:
 
-* At the moment we are having problems with the python scripts.  The issue is related to a strong dependency with the datasets, tutorials and some additional libraries (intelectual property). We are working hard to clean up things a little bit and creating basic tutorials in order to release all scripts.
+* We reached a point where we think we implemented everything in python. Now we are working hard in porting everything to javascript, with exactly the same capabilities and even more. The advantage of using javascript is that you can run the scripts from any device using a web browser.
 
-* We are also working in implementing all the python scripts in javascript, with exactly the same functions.  The advantage of using javascript is that you can run the scripts from any device using a web browser.
+* For the moment we are not thinking in realizing the python scripts, but if you are interested let us know.  Besides a few intellectual property issues, we do not have any problem in sharing the scripts.
 
-* For the moment the tutorials are targeted to data obtained from DAKOTA-OpenFOAM studies, and we are working in data from SU2 as well.  We hope to come out with a single format for doing the data analytics independently of the tools used.  So far we are working with CSV, TSV and JSON data files.
+* Our idea is to create a tool that can be used by any user, with no need to know how to program or how to use front-end servers. The python scripts requires some programming knowledge, and adding to this the fact that sometimes you need to run on a front-end server, it will made things difficult for entry users.
+
+* We also have prepared a few tutorials. Most of them are targeted to data obtained from numerical simulations (mainly DAKOTA-OpenFOAM studies, but in theory we can use any CAE applications).  
+
+* We hope to come out with a single format for doing the data analytics independently of the tools used.  So far we are working with CSV, TSV and JSON data files. 
 
 
 ###Things that are already working in javascript and d3.js
@@ -33,16 +37,20 @@
   	* Area plots
   	* Hexbin plot
   	* Histograms
-  	
+  	* Tree maps
+  	* Box plots - Violin plots
+
+
 * Plots that we are testing before releasing them:
 
 	* Scatter plot matrix
   	* Correlation plot matrix
+  	* Lattice graphs (also known as trellis graphs, small multiple plots, grid charts)
    	* Linear regression plots
-   	* Box plots - Violin plots
   	* Spider plots - Radar plots
   	* Surface plots
   	* K-means clustering
+  	* Grid/spreadsheet component
 
 * Plots that we haven't implemented yet:
 
@@ -51,6 +59,7 @@
   	* Geospatial data
   	* Plot digitizer
   	* Downsampling for big-data
+  	* Sparklines
 
 &nbsp;
 &nbsp;
@@ -58,11 +67,11 @@
 
 -
 
-The tools are bassed in Python 2.7, javascript, html5, pyqt5, and d3.js.
+The tools are based in Python 2.7, javascript, html5, pyqt5, and d3.js.
 
 joegi
 
-**Last update: SEP14-2015.**
+**Last update: OCT1-2015.**
 
 -
 &nbsp;
