@@ -3,7 +3,7 @@
 ![](./daelogo.png)
 
 
-###DAE4CFD is a set of Python and js scripts specifically written to analyze and visualize the data obtained from multiphysics and CFD simulations.
+###DAE4CFD is a set of Python and js scripts specifically written to analyze and visualize the data obtained from multiphysics and CFD simulations. Visual storytelling for CFD.
 
 > **The main goal of this project is to enhance people's ability to understand and communicate data through the use of interactive systems for data analytics (DA) and exploratory data analysis (EDA). The data to be used can be obtained from any discipline (social sciences, econometrics, marketing, health care, physics, etc.), but we will focus our attention on data obtained from engineering design exploration and design optimization studies. The tools are implemented using Python, javascript, D3.js and html5, and can be run from any device with a working web browser (PC, tablet, smart-phone). As the user will only need to interact with the web browser interface, the learning curve is minimal.**
 
