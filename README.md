@@ -26,6 +26,8 @@
 
 * We hope to come out with a single format for doing the data analytics independently of the tools used.  So far we are working with CSV, TSV and JSON data files. 
 
+* You can also work with numerical and categorical data.
+
 
 ###Things that are already working in javascript and d3.js
 
@@ -74,6 +76,9 @@
 	* Supervised and unsupervised machine learning.
 	* Predictive analytics.
 	* Uncertainty quantification manager.
+	* Loading remote files and multiple files.
+	* Support for dimensions (metric system).
+	* Saving the plots in pdf, eps or jpeg format.  A way around gnuplot, for those interested in using the images for publications.
 
 &nbsp;
 &nbsp;
