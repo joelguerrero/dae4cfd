@@ -5,18 +5,22 @@
 
 ###DAE4CFD is a set of Python and js scripts specifically written to analyze and visualize the data obtained from multiphysics and CFD simulations.
 
-> **The goal of this project is to enhance people's ability to understand and communicate data through the design of new interactive systems for data visualization and analysis. The data to be used can be obtained from any discipline (social sciences, econometrics, marketing, health care, physics, etc.), but we will focus our attention on data obtained from engineering design exploration and design optimization studies. We aim at studying the perceptual, cognitive and social factors affecting data analysis in order to improve the efficiency at which expert analysts work, and to lower barriers for non-experts. The tools are implemented in Python, javascript and html5, and can be run from any device (PC, tablet, smart-phone).**
+> **The main goal of this project is to enhance people's ability to understand and communicate data through the use of interactive systems for data analytics (DA) and exploratory data analysis (EDA). The data to be used can be obtained from any discipline (social sciences, econometrics, marketing, health care, physics, etc.), but we will focus our attention on data obtained from engineering design exploration and design optimization studies. The tools are implemented using Python, javascript, D3.js and html5, and can be run from any device with a working web browser (PC, tablet, smart-phone). As the user will only need to interact with the web browser interface, the learning curve is minimal.**
+
+<!--We aim at studying the perceptual, cognitive and social factors affecting data analysis in order to improve the efficiency at which expert analysts work, and to lower barriers for non-experts.-->
 
 &nbsp;
 &nbsp;
 
 ##Latest news:
 
-* We reached a point where we think we implemented everything in python. Now we are working hard in porting everything to javascript, with exactly the same capabilities and even more. The advantage of using javascript is that you can run the scripts from any device using a web browser.
+* Major milestone, we implemented 80% of the scripts in python. The other 20% are things we have not think about.
 
-* For the moment we are not thinking in realizing the python scripts, but if you are interested let us know.  Besides a few intellectual property issues, we do not have any problem in sharing the scripts.
+* For the moment we are not thinking in releasing the python scripts, but if you are interested let us know.  Besides a few intellectual property issues, we do not have any problem in sharing the scripts.
 
-* Our idea is to create a tool that can be used by any user, with no need to know how to program or how to use front-end servers. The python scripts requires some programming knowledge, and adding to this the fact that sometimes you need to run on a front-end server, it will made things difficult for entry users.
+* Right now we are working hard in porting everything to javascript, with exactly the same capabilities as in the Python implementation. The advantage of using javascript and html5 is that you can run the scripts from any device with a working web browser. Also, no need to learn or deal Python (or R) to do DA and EDA.
+
+* Our idea is to create a tool that can be used by any user, with no need to know how to program or how to use front-end servers. The python scripts requires some programming knowledge, and adding to this the fact that sometimes you need to run on a front-end server, it will made things difficult for newcomers.
 
 * We also have prepared a few tutorials. Most of them are targeted to data obtained from numerical simulations (mainly DAKOTA-OpenFOAM studies, but in theory we can use any CAE applications).  
 
@@ -28,38 +32,48 @@
 * Working but we are having a hard time improving it (aesthetics and advanced capabilities):
 
 	* Interactive scatter plot (**the kernel of the framework**)
+	* Interactive parallel coordinates plot
 		
 * Plots that are already working but we need to integrate into the framework:
 
-  	* Pareto inspector
-  	* Parallel coordinates plot
-  	* Line plots
-  	* Area plots
-  	* Hexbin plot
-  	* Histograms
-  	* Tree maps
-  	* Box plots - Violin plots
+  	* Pareto inspector.
+  	* Histograms.
+  	* Hexbin plot.
+  	* Box plots - Violin plots.
+  	* Scatter plot with linear regression.
+  	* Linear regression plots.
+  	* Spider plots - Radar plots.
+  	* Line plots.
+  	* Area plots.
+  	* Tree maps.
 
 
 * Plots that we are testing before releasing them:
 
-	* Scatter plot matrix
-  	* Correlation plot matrix
-  	* Lattice graphs (also known as trellis graphs, small multiple plots, grid charts)
-   	* Linear regression plots
-  	* Spider plots - Radar plots
-  	* Surface plots
-  	* K-means clustering
-  	* Grid/spreadsheet component
+	* Scatter plot matrix.
+  	* Lattice graphs (also known as trellis graphs, small multiple plots, grid charts).
+  	* Correlation plot matrix.
+  	* Key performance indicator.
+  	* Surface plots.
+  	* K-means clustering and hierarchical clustering.
+  	* Grid/spreadsheet component.
 
-* Plots that we haven't implemented yet:
+* Plots that we haven't implemented yet (but we will):
+  	* Live streaming plots.
+  	* Geospatial data.
+  	* Plot digitizer.
+  	* Sparklines.
 
-	* Crossfilters for exploring large multivariate datasets 
-  	* Live streaming plots
-  	* Geospatial data
-  	* Plot digitizer
-  	* Downsampling for big-data
-  	* Sparklines
+* Advanced features in which we are working on:
+	* Crossfilters for exploring large multivariate datasets.
+	* Downsampling for big-data.
+	* Interactive dashboard builder.
+	* Grid/spreadsheet for data cleaning.
+	* Data manager.
+	* Data scrapping manager.
+	* Supervised and unsupervised machine learning.
+	* Predictive analytics.
+	* Uncertainty quantification manager.
 
 &nbsp;
 &nbsp;
@@ -71,7 +85,7 @@ The tools are based in Python 2.7, javascript, html5, pyqt5, and d3.js.
 
 joegi
 
-**Last update: OCT1-2015.**
+**Last update: OCT15-2015.**
 
 -
 &nbsp;
