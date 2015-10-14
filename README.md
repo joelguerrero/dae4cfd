@@ -26,7 +26,7 @@
 
 * We hope to come out with a single format for doing the data analytics independently of the tools used.  So far we are working with CSV, TSV and JSON data files. 
 
-* You can also work with numerical and categorical data.
+* By the way, everything works with numerical and categorical data.
 
 
 ###Things that are already working in javascript and d3.js
