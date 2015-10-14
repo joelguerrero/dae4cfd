@@ -78,7 +78,7 @@
 	* Uncertainty quantification manager.
 	* Loading remote files (dealing with firewalls) and multiple files.
 	* Support for dimensions (metric system).
-	* Saving the plots in pdf, eps or jpeg format.  A way around gnuplot, for those interested in using the images for publications.
+	* Saving the plots in pdf, eps or jpeg format.  This is a nice way around gnuplot, for those interested in using the images for publications.
 
 &nbsp;
 &nbsp;
