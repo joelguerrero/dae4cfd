@@ -73,10 +73,10 @@
 	* Grid/spreadsheet for data cleaning.
 	* Data manager.
 	* Data scrapping manager.
-	* Supervised and unsupervised machine learning.
+	* More on supervised and unsupervised machine learning.
 	* Predictive analytics.
 	* Uncertainty quantification manager.
-	* Loading remote files and multiple files.
+	* Loading remote files (dealing with firewalls) and multiple files.
 	* Support for dimensions (metric system).
 	* Saving the plots in pdf, eps or jpeg format.  A way around gnuplot, for those interested in using the images for publications.
 
