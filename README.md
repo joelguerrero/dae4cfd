@@ -14,17 +14,19 @@
 
 ##Latest news:
 
+* Developing is really slow as we lost the main UI programmer.
+
 * Major milestone, we implemented 80% of the scripts in python. The other 20% are things we have not thought about.
 
-* For the moment we are not thinking in releasing the python scripts, but if you are interested let us know.  Besides a few intellectual property issues, we think it is not possible to share the scripts.
+* For the moment we are not thinking in releasing the python scripts, but if you are interested let us know.  Besides a few intellectual property issues, we think it is possible to share the scripts.
 
 * Right now we are working hard in porting everything to javascript, with exactly the same capabilities as in the Python implementation. The advantage of using javascript and html5 is that you can run the scripts from any device with a working web browser. Also, no need to learn or deal with Python (or R) to do DA and EDA.
 
 * Our idea is to create a tool that can be used by any user, with no need to know how to program or how to deploy a server. The python scripts requires some programming knowledge, and adding to this the fact that sometimes you need to start a server, it will made things difficult for newcomers.
 
-* We also have prepared a few tutorials. Most of them are targeted to data obtained from numerical simulations (mainly DAKOTA-OpenFOAM studies, but in theory we can use any CAE applications).  
+* We also have prepared a few tutorials. Most of them are targeted to data obtained from numerical simulations (mainly DAKOTA-OpenFOAM studies, but in theory we can use any CAE application).  
 
-* We hope to come out with a single format for doing the data analytics independently of the tools used.  So far we are working with CSV, TSV, DSV, and JSON data files. 
+* We hope to come out with a single format for doing the data analytics independently of the tools used.  So far we are working with CSV, TSV, JSON, and SQL files. 
 
 * By the way, everything works with numerical and categorical data.
 
@@ -42,19 +44,21 @@
 	* Linear regression plots.
 	* Line plots.
 	* Lattice graphs (also known as trellis graphs, small multiple plots, grid charts).
+	* Scatter plot with linear regression.
+	* Pie plots.
 	  
 * Plots that are already working but we need to integrate into the framework:
 
   	* Pareto inspector.
   	* Violin plots.
-  	* Scatter plot with linear regression.
   	* Spider plots - Radar plots.
   	* Polar plots.
+  	* Rose plots
   	* Area plots.
   	* Tree maps.
-  	* Pie plots.
-
-
+  	* Slopegraph.
+  	* Lollipop graphs.
+  	
 * Plots that we are testing before releasing them:
 
   	* Correlation plot matrix.
@@ -62,21 +66,21 @@
   	* Surface plots.
   	* K-means clustering and hierarchical clustering.
   	* Grid/spreadsheet component.
-  	* Slopegraph.
-  	* Lollipop graphs.
   	* Kernel Density Estimation.
-
+  	* Geospatial data.
+  	* Sparklines.
+  	* 
 * Plots that we haven't implemented yet (but we will):
 
   	* Live streaming plots.
-  	* Geospatial data.
   	* Plot digitizer.
-  	* Sparklines.
   	* Dimpvis
   	* Radviz
-  	* Motion charts (gapminder)
+  	* Motion 
+  	* charts (gapminder)
 
 * Advanced features in which we are working on:
+
 	* Crossfilters for exploring large multivariate datasets.
 	* Downsampling for big-data.
 	* Interactive dashboard builder.
@@ -89,10 +93,7 @@
 	* Loading remote files (dealing with firewalls) and multiple files.
 	* Support for dimensions (metric system).
 	* Saving the plots in pdf, eps or jpeg format.  This is a nice way around gnuplot, for those interested in using the images for publications.
-
-<!--sport analytics manager
-business intelligence managar
-tematic managers-->
+   * Tematic managers (sport analytics, business intelligence, econometrics).
 
 &nbsp;
 &nbsp;
@@ -104,7 +105,7 @@ The tools are based in Python 2.7, javascript, html5, pyqt5, and d3.js.
 
 joegi
 
-**Last update: NOV15-2015.**
+**Last update: MAR15-2016.**
 
 -
 &nbsp;
